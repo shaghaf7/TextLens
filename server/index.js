@@ -12,7 +12,12 @@ const PORT = process.env.PORT || 5000;
 
 const app = express();
 app.use(express.static(path.join(__dirname + "/uploads")));
-app.use(cors());
+app.use(cors({
+  origin: ["http://localhost:5173", "https://text-lens.vercel.app"],
+  methods: ["GET", "POST"],
+  credentials: true
+}));
+
 cloudinary.config({
   cloud_name: "dat6x9jpn",
   api_key: process.env.CLOUDINARY_API_KEY,
