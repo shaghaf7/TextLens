@@ -12,16 +12,7 @@ const PORT = process.env.PORT || 5000;
 
 const app = express();
 app.use(express.static(path.join(__dirname + "/uploads")));
-app.use(
-  cors({
-    origin: "https://text-lens-alpha.vercel.app", // allow only your frontend
-    methods: ["GET", "POST"],
-    credentials: true,
-  })
-);
-
-
-
+app.use(cors());
 cloudinary.config({
   cloud_name: "dat6x9jpn",
   api_key: process.env.CLOUDINARY_API_KEY,
