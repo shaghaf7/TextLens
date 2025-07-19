@@ -12,17 +12,14 @@ const PORT = process.env.PORT || 5000;
 
 const app = express();
 app.use(express.static(path.join(__dirname + "/uploads")));
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://text-lens.vercel.app",
-  "https://text-lens-zeta.vercel.app", // ← add your deployed frontend domain here
-];
+app.use(
+  cors({
+    origin: "https://text-lens-alpha.vercel.app", // allow only your frontend
+    methods: ["GET", "POST"],
+    credentials: true,
+  })
+);
 
-app.use(cors({
-  origin: allowedOrigins,
-  methods: ["GET", "POST"],
-  credentials: true,
-}));
 
 
 cloudinary.config({
